@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from '../ui/button'
 import Image from 'next/image'
+import SignInButton from './SignInButton'
 
 const Hero = () => {
   return (
@@ -9,7 +10,7 @@ const Hero = () => {
         <p className='text-center mt-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum architecto quae sequi. Suscipit at ratione itaque dignissimos vel minima commodi beatae quos quam? Hic sunt quidem nam deleniti architecto magni!</p>
         <div className='flex gap-5 mt-6'>
             <Button variant="outline">Try Demo</Button>
-            <Button>Get Started</Button>
+            <SignInButton/>
         </div>
         <Image src={'/landing.png'} alt="landing" width={1000} height={800} className='mt-12 rounded-xl'/>
     </div>
