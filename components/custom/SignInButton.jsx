@@ -31,10 +31,10 @@ function SignInButton() {
 
         const userDetail={
           ...user,
-          _id: result?.id?.result
+          _id: result?.id ?? result
         }
         if (typeof window !== undefined) {
-          localStorage.setItem('userDetail', JSON.stringify(userDetail));
+          localStorage.setItem('userDetail',JSON.stringify(userDetail));
         }
 
         console.log("User successfully created in Convex DB.");

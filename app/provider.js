@@ -9,7 +9,8 @@ function Provider({children}) {
     const [userDetail,setUserDetail] = useState()
     useEffect(() => {
       if (typeof window !== 'undefined') {
-        const storedData = localStorage.getItem('userDetails');
+        const storedData = localStorage.getItem('userDetail');
+        console.log(storedData)
         try {
           if (storedData) {
             const storage = JSON.parse(storedData);
@@ -29,7 +30,7 @@ function Provider({children}) {
   return (
     <ConvexProvider client={convex}>
       <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
-        <UserDetailContext.Provider value={{}}>
+        <UserDetailContext.Provider value={{userDetail,setUserDetail}}>
     <div>
       {children}
     </div>
