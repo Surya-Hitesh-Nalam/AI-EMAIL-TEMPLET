@@ -86,7 +86,7 @@ export default [
         },
         outerStyle: {
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'left',
             alignItems: 'center',
             backgroundColor: '#fff',
             width: '100%'
