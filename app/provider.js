@@ -42,6 +42,20 @@ function Provider({children}) {
         }
       }
     }, []);
+
+    useEffect(()=>{
+      if(selectedElement){
+        let updatedEmailTemplates=[]
+        emailTemplet.forEach((item,index)=>{
+          if(item.id===selectedElement?.layout?.id){
+            updatedEmailTemplates?.push(selectedElement?.layout)
+        }
+      else{
+        updatedEmailTemplates(item)
+      }})
+      setEmailTemplet(updatedEmailTemplates)
+      }
+    },[selectedElement])
     
   return (
     <ConvexProvider client={convex}>
