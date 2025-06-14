@@ -1,6 +1,6 @@
 'use client'
 import { useSelectedElementContext } from '@/app/provider'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputField from './Settings/InputField'
 import ColorPickerField from './Settings/ColorPickerField'
 import InputStyleField from './Settings/InputStyleField'

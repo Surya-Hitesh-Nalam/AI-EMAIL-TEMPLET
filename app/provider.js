@@ -20,28 +20,32 @@ function Provider({children}) {
       if (typeof window !== 'undefined') {
         const storedData = localStorage.getItem('userDetail');
         const emailTempletStorage = JSON.parse(localStorage.getItem('emailTemplet'));
-        setEmailTemplet(emailTempletStorage ?? [])
-        if(!storage?.email || !storage){
-
-        }else{
-          setUserDetail(storage);
-        }
-        console.log(storedData)
-        try {
-          if (storedData) {
+    
+        setEmailTemplet(emailTempletStorage ?? []);
+    
+        if (storedData) {
+          try {
             const storage = JSON.parse(storedData);
+            
             if (!storage?.email) {
               // Redirect to Home Screen
             } else {
               setUserDetail(storage);
             }
+          } catch (error) {
+            console.error("Invalid JSON in localStorage:", error);
+            localStorage.removeItem('userDetail');  // Fix: Corrected key name
           }
-        } catch (error) {
-          console.error("Invalid JSON in localStorage:", error);
-          localStorage.removeItem('userDetails');  // Clear invalid data
         }
       }
     }, []);
+    
+
+    useEffect(()=>{
+        if(typeof window!=undefined){
+          localStorage.setItem('emailTemplet',JSON.stringify(emailTemplet))
+        }
+    },[emailTemplet])
 
     useEffect(()=>{
       if(selectedElement){
@@ -51,7 +55,8 @@ function Provider({children}) {
             updatedEmailTemplates?.push(selectedElement?.layout)
         }
       else{
-        updatedEmailTemplates(item)
+        updatedEmailTemplates.push(item) // ✅ correct
+
       }})
       setEmailTemplet(updatedEmailTemplates)
       }
@@ -61,7 +66,7 @@ function Provider({children}) {
     <ConvexProvider client={convex}>
       <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
         <UserDetailContext.Provider value={{userDetail,setUserDetail}}>
-          <ScreenSizeContext.Provider values={{screenSize,setScreenSize}}>
+          <ScreenSizeContext.Provider value={{screenSize,setScreenSize}}>
             <DragDropLayoutElement.Provider value={{dragElementLayout,setDragElementLayout}}>
               <EmailTempletContext.Provider value={{emailTemplet,setEmailTemplet}}>
                 <SelectedElementContext.Provider value={{selectedElement, setSelectedElement}}>

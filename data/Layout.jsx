@@ -1,6 +1,6 @@
 import { Columns2, Columns3, Columns4, RectangleHorizontal } from "lucide-react";
 
-export default[
+export default [
     {
         label:'1 Column',
         type:'column',

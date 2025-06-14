@@ -12,10 +12,10 @@ function Dashboard() {
       <Header/>
       <div className='p-10 md:px-20 lg:px-40 xl:px:50 mt-16'>
         <div className='flex justify-between items-center'>
-            <h2 className='font-bold text-3xl'>Hello, {userDetail.name}</h2>
+            <h2 className='font-bold text-3xl'>Hello, {userDetail?.name}</h2>
             <Button>+Create New Email Templet</Button>
         </div>
-        <EmailTempletList/>
+        <EmailTempletList />
       </div>
     </div>
   )

@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { Button } from '../ui/button';
 
 const EmailTempletList = () => {
-    const {emailList,setEmailList} = useState();
+    const [emailList, setEmailList] = useState([]);
+
   return (
     <div >
         <h2 className='font bold-xl text-primary mt-6'>Workspace</h2>

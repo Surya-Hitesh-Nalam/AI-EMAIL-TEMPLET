@@ -3,7 +3,7 @@ import React from 'react'
 const TextComponent = ({style,content}) => {
   return (
     <div>
-      <h style={style}>{content}</h>
+      <h1 style={style}>{content}</h1>
     </div>
   )
 }

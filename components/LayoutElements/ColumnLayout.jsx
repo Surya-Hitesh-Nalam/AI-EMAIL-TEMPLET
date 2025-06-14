@@ -5,7 +5,7 @@ import TextComponent from '../custom/Element/TextComponent'
 import ImageComponent from '../custom/Element/ImageComponent'
 import LogoComponent from '../custom/Element/LogoComponent'
 import DividerComponent from '../custom/Element/DividerComponent'
-import { useSelectedElementContext } from '@/app/provider'
+import { useDragLayoutElementContext, useEmailTempletContext, useSelectedElementContext } from '@/app/provider'
 
 const ColumnLayout = ({layout}) => {
   const [dragOver,setDragOver] = useState() 
@@ -48,7 +48,7 @@ const ColumnLayout = ({layout}) => {
             gridTemplateColumns:`repeat(${layout.numOfCol},1fr)`,
             gap:'0px'
         }}>
-      {Array.from({length:layout?.numOfCol}).map((_,index)=>{
+      {Array.from({length:layout?.numOfCol}).map((_,index)=>(
         <div key={index} className={`p-0 flex items-center ${!layout?.[index]?.type&& 'bg-gray-100 border border-dashed'} cursor-pointer justify-center
           ${(index==dragOver?.index && dragOver?.columnId)&&'bg-green-100'}
           ${(selectedElement?.layout?.id==layout?.id && selectedElement?.index==index)&&'bg-blue-500 border-2'}`}
@@ -57,7 +57,7 @@ const ColumnLayout = ({layout}) => {
          onClick={()=>setSelectedElement({layout:layout,index:index})}>
           {GetElementComponent(layout?.[index]) ?? "Drag Element Here"}
         </div>
-      })}
+      ))}
       </div>
     </div>
   )

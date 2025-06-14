@@ -1,5 +1,3 @@
-
-
 import { Columns2, Facebook, Frame, Framer, Image, Link2, PanelTop, Projector, RectangleEllipsis, SquareSplitVertical, Text, TextSelectionIcon, Twitter } from "lucide-react";
 
 
@@ -17,7 +15,7 @@ export default [
             padding: '10px',
             width: 'auto',
             fontSize: '16px',
-            borderRadius: '0px',
+            borderRadius: '25px',
             fontWeight: 'normal',
             objectFit: 'contain',
 
@@ -33,7 +31,7 @@ export default [
         icon: TextSelectionIcon,
         type: 'Text',
         label: 'Text',
-        textarea: 'Sample Text',
+        content: 'Sample Text',
         style: {
             backgroundColor: '#fff',
             color: '#000000',
@@ -117,7 +115,7 @@ export default [
         icon: SquareSplitVertical,
         type: 'Divider',
         label: 'Divider',
-        content: '',
+        content: 'Divider',
         style: {
             color: '#000000',
             padding: '10px',
