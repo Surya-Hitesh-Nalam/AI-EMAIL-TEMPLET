@@ -1,10 +1,11 @@
 "use client"
 import Image from 'next/image'
 import React from 'react'
-import { Button } from '../ui/button'
+
 import SignInButton from './SignInButton'
 import { useUserDetailContext } from '@/app/provider'
 import Link from 'next/link'
+import { Button } from '../ui/button'
 
 const Header = () => {
   const {userDetail,setUserDetail} =  useUserDetailContext();

@@ -6,6 +6,41 @@ import ColorPickerField from './Settings/ColorPickerField'
 import InputStyleField from './Settings/InputStyleField'
 import SliderField from './Settings/SliderField'
 import TextAreaField from './Settings/TextAreaField'
+import ToogleGroupField from './Settings/ToogleGroupField'
+import { AArrowUp, AlignCenter, AlignLeft, AlignRight, CaseLower, CaseUpper } from 'lucide-react'
+import DropDownField from './Settings/DropDownField'
+
+const TextAlignOptions =[
+  {
+    value:'left',
+    icon:AlignLeft
+  },
+  {
+    value:'center',
+    icon:AlignCenter
+  },
+  {
+    value:'right',
+    icon:AlignRight
+  },
+]
+
+
+
+const TextTransformOptions =[
+  {
+    value:'uppercase',
+    icon: CaseUpper
+  },
+  {
+    value:'lowercase',
+    icon:CaseLower
+  },
+  {
+    value:'capitalize',
+    icon:AArrowUp
+  },
+]
 
 const Settings = () => {
   const {selectedElement,setSelectedElement} = useSelectedElementContext()
@@ -28,7 +63,7 @@ const Settings = () => {
       ...selectedElement,
       layout:{
         ...selectedElement?.layout,
-        [selectedElement?.layout]:{
+        [selectedElement?.index]:{
           ...selectedElement?.layout[selectedElement?.index],
           style:{
             ...selectedElement?.layout[selectedElement?.index]?.style,
@@ -71,7 +106,7 @@ const Settings = () => {
       
       
       {element?.style?.padding &&
-      <InputStyleField label={'Padding'} value={element?.style?.padding} type="%"
+      <InputStyleField label={'Padding'} value={element?.style?.padding} 
       onHandleStyleChange={(value)=>onHandleStyleChange('padding',value)}/>}
       
       
@@ -83,6 +118,15 @@ const Settings = () => {
       {element?.style?.width &&
       <SliderField label={'Width'} value={element?.style?.width} type="%"
       onHandleStyleChange={(value)=>onHandleStyleChange('width',value)}/>}
+
+      {element?.style?.textAlign && 
+      <ToogleGroupField label={'Text Align'} value={element?.style?.textAlign} options={TextAlignOptions} onHandleStyleChange={(value)=>onHandleStyleChange('textAlign',value)}/>}
+    
+       {element?.style?.textTransform && 
+      <ToogleGroupField label={'Text Transform'} value={element?.style?.textTransform} options={TextTransformOptions} onHandleStyleChange={(value)=>onHandleStyleChange('textTransform',value)}/>}
+
+      {element?.style?.fontWeight && 
+      <DropDownField label={'Font Weight'} value={element?.style?.fontWeight} options={['Normal','Bold']} onHandleStyleChange={(value)=>onHandleStyleChange('fontWeight',value)}/>}
     </div>
   )
 }

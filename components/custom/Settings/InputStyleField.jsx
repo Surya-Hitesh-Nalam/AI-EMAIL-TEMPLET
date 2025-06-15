@@ -1,9 +1,11 @@
+
+import { Input } from '@/components/ui/input'
 import React from 'react'
 
 const InputStyleField = ({label,value,onHandleStyleChange,type='px'}) => {
 
-    const FormattedValue=()=>{
-        return Number(value.toString().replace(type,''))
+    const FormattedValue=(value_)=>{
+        return Number(value_.toString().replace(type,''))
     }
   return (
     <div>

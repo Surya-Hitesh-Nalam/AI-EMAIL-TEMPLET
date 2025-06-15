@@ -1,4 +1,5 @@
-import { Input } from '@/components/ui/Input'
+
+import { Input } from '@/components/ui/input'
 import React from 'react'
 
 const InputField = ({label,value,onHandleInputChange}) => {
