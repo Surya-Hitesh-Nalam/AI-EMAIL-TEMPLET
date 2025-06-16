@@ -1,14 +1,16 @@
 'use client'
 import { useDragLayoutElementContext, useEmailTempletContext, useScreenSizeContext } from '@/app/provider'
 import Layout from '@/data/Layout'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ColumnLayout from '../LayoutElements/ColumnLayout'
 
-const Canvas = () => {
+const Canvas = ({viewHTMLCode}) => {
+  const htmlRef = useRef();
   const {screenSize,setScreenSize} = useScreenSizeContext()
   const {dragElementLayout,setDragElementLayout}=useDragLayoutElementContext()
   const {emailTemplet,setEmailTemplet} = useEmailTempletContext()
   const [dragOver,setDragOver] = useState(false)
+  const [htmlCode , setHTMLCode] = useState()
   const onDragOver = (e)=>{
     e.preventDefault()
     setDragOver(true)
@@ -24,10 +26,22 @@ const Canvas = () => {
       return <ColumnLayout layout={layout}/>
     }
   }
+
+  useEffect(()=>{
+    viewHTMLCode&&GetHTMLCode()
+  },[viewHTMLCode])
+
+  const GetHTMLCode = ()=>{
+    if(htmlRef.current){
+      const htmlContent = htmlRef.current.innerHTML;
+      console.log(htmlContent)
+      setHTMLCode(htmlContent)
+    }
+  }
   return (
     <div className='mt-20 flex justify-center'>
       <div className={`bg-white p-6 w-full ${screenSize=='desktop'?'max-w-2xl':'max-w-md'} ${dragOver&& 'bg-purple-200 p-4'}`}
-      onDragOver={onDragOver} onDrop={()=>onDropHandle()}>
+      onDragOver={onDragOver} onDrop={()=>onDropHandle()} ref={htmlRef}>
         {emailTemplet?.length>0 ? emailTemplet?.map((layout,index)=>(
           <div key={index}>
             {getLayoutComponent(layout)}

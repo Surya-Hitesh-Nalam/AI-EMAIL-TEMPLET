@@ -5,7 +5,7 @@ import { Button } from '../ui/button'
 import { Code, CodeSquare, Monitor, Smartphone } from 'lucide-react'
 import { useScreenSizeContext } from '@/app/provider'
 
-const EditorHeader = () => {
+const EditorHeader = ({viewHTMLCode}) => {
   const {screenSize,setScreenSize} = useScreenSizeContext()
   return (
     <div className='p-4 shadow-sm flex justify-between items-center'>
@@ -15,7 +15,7 @@ const EditorHeader = () => {
             <Button onClick={()=>setScreenSize('mobile')} variant="ghost"  className={`${screenSize=='mobile'&&'bg-purple-100 text-primary'}`}><Smartphone/> Desktop</Button>
         </div>
         <div className='flex gap-3'>
-            <Button variant='ghost' className="hover:text-primary"><Code/></Button>
+            <Button variant='ghost' className="hover:text-primary" onClick={()=>viewHTMLCode(true)}><Code/></Button>
             <Button variant='outline'>Send Test Email</Button>
             <Button>Save Templet</Button>
         </div>

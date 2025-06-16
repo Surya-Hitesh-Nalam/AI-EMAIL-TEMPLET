@@ -57,9 +57,9 @@ export default [
             backgroundColor: '#ffffff',
             padding: '10px',
             height: '50%',
-            width: '70%',
+            width: '100%',
             margin: '0px',
-            borderRadius: '0px'
+            borderRadius: '0px',
         },
         outerStyle: {
             display: 'flex',
@@ -79,8 +79,8 @@ export default [
         style: {
             backgroundColor: '#ffffff',
             padding: '10px',
-            height: '30%',
-            width: '30%',
+            height: '40%',
+            width: '40%',
         },
         outerStyle: {
             display: 'flex',
