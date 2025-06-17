@@ -1,42 +1,37 @@
-// To run this code you need to install the following dependencies:
-// npm install @google/genai mime
-// npm install -D @types/node
+import { GoogleGenAI } from "@google/genai";
 
-import {
-  GoogleGenAI,
-} from '@google/genai';
+export const GenerateEmailTemplateAIModel = {
+  sendMessage: async (prompt) => {
+    console.log("🤖 Sending prompt to Gemini:", prompt);
 
-async function main() {
-  const ai = new GoogleGenAI({
-    apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY,
-  });
-  const config = {
-    thinkingConfig: {
-      thinkingBudget: -1,
-    },
-    responseMimeType: 'application/json',
-  };
-  const model = 'gemini-2.5-pro-preview-06-05';
-  const contents = [
-    {
-      role: 'user',
-      parts: [
-        {
-          text: `INSERT_INPUT_HERE`,
+    try {
+      const ai = new GoogleGenAI({
+        apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY,
+      });
+
+      const model = "gemini-2.5-pro-preview-06-05";
+      const contents = [{ role: "user", parts: [{ text: prompt }] }];
+
+      const response = await ai.models.generateContentStream({
+        model,
+        contents,
+        config: {
+          responseMimeType: "application/json",
+          thinkingConfig: { thinkingBudget: -1 },
         },
-      ],
-    },
-  ];
+      });
 
-  const response = await ai.models.generateContentStream({
-    model,
-    config,
-    contents,
-  });
-  let fileIndex = 0;
-  for await (const chunk of response) {
-    console.log(chunk.text);
-  }
-}
+      let finalText = "";
+      for await (const chunk of response) {
+        finalText += chunk.text;
+      }
 
-main();
+      console.log("✅ Final AI Text:", finalText);
+      return finalText;
+
+    } catch (error) {
+      console.error("❌ Error in Gemini sendMessage:", error);
+      throw error;
+    }
+  },
+};
