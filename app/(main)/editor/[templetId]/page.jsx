@@ -13,7 +13,7 @@ const Editor = () => {
       <div className='grid grid-cols-5'>
         <ElementsSideBar/>
         <div className='col-span-3 bg-gray-100'>
-            <Canvas viewHTMLCode={viewHTMLCode}/>
+            <Canvas viewHTMLCode={viewHTMLCode} closeDialog={()=>setviewHTMLCode(false)}/>
         </div>
         <Settings/>
       </div>

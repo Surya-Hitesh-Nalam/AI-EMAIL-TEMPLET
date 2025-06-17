@@ -3,8 +3,9 @@ import { useDragLayoutElementContext, useEmailTempletContext, useScreenSizeConte
 import Layout from '@/data/Layout'
 import React, { useEffect, useRef, useState } from 'react'
 import ColumnLayout from '../LayoutElements/ColumnLayout'
+import ViewHTMLDialog from './ViewHTMLDialog'
 
-const Canvas = ({viewHTMLCode}) => {
+const Canvas = ({viewHTMLCode,closeDialog}) => {
   const htmlRef = useRef();
   const {screenSize,setScreenSize} = useScreenSizeContext()
   const {dragElementLayout,setDragElementLayout}=useDragLayoutElementContext()
@@ -48,6 +49,7 @@ const Canvas = ({viewHTMLCode}) => {
           </div>
         )):<h2 className='p-4 text-center bg-gray-100 border-dashed'>Add Layout Here</h2>}
       </div>
+      <ViewHTMLDialog openDilog={viewHTMLCode} htmlCode={htmlCode} closeDialog={closeDialog}/>
     </div>
   )
 }
