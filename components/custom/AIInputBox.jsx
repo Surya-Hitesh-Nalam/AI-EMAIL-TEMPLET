@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation'
 const AIInputBox = () => {
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const saveTemplate = useMutation(api.emailTemplates.SaveTemplate)
+  const SaveTemplate = useMutation(api.emailTemplate.SaveTemplate)
   const {userDetail,setUserDetail} = useUserDetailContext()
   const router = useRouter()
   const OnGenerate = async () => {
@@ -31,12 +31,13 @@ const AIInputBox = () => {
       const response = await SaveTemplate({
         tid:tid,
         design:res.data,
-        email:userDetail.email
+        email:userDetail?.email,
+        description:userInput
       })
       console.log(response)
 
       //navigate to editor page 
-      router.push('/editor'+tid)
+      router.push('/editor/'+tid)
     } catch (error) {
       console.error("❌ Axios Error:", error);
     } finally {

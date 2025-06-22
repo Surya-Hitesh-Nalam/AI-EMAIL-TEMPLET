@@ -19,7 +19,7 @@ function Provider({children}) {
     useEffect(() => {
       if (typeof window !== 'undefined') {
         const storedData = localStorage.getItem('userDetail');
-        const emailTempletStorage = JSON.parse(localStorage.getItem('emailTemplet'));
+        const emailTempletStorage = JSON.parse(localStorage.getItem('emailTemplet')??{});
     
         setEmailTemplet(emailTempletStorage ?? []);
     

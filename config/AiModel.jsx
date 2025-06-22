@@ -9,7 +9,7 @@ export const GenerateEmailTemplateAIModel = {
         apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY,
       });
 
-      const model = "gemini-2.5-pro-preview-06-05";
+      const model = "gemini-2.5-flash";
       const contents = [{ role: "user", parts: [{ text: prompt }] }];
 
       const response = await ai.models.generateContentStream({
